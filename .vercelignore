@@ -1,7 +1,0 @@
-/storage
-/tests
-.env
-.git
-.github
-node_modules
-/public/storage
