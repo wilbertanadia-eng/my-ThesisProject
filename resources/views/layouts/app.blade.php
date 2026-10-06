@@ -9,6 +9,15 @@
     <meta http-equiv="Expires" content="0">
     <title>@yield('title', 'VSULHS SSLG')</title>
 
+    {{-- Theme initialization script - runs synchronously before page renders --}}
+    <script>
+        (function() {
+            if (localStorage.getItem('dark') === 'true') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     {{-- <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script> --}}
