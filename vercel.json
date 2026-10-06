@@ -1,6 +1,6 @@
 {
   "installCommand": "sh ./scripts/vercel-install.sh",
-  "buildCommand": "npm run build",
+  "buildCommand": "sh ./scripts/vercel-build.sh",
   "devCommand": "npm run dev",
   "functions": {
     "api/**/*.php": {
