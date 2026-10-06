@@ -29,6 +29,11 @@ use Illuminate\Support\Facades\Storage;
 // ── Root redirect ─────────────────────────────────────────────────────────────
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 
+// ── Health check ─────────────────────────────────────────────────────────────
+// Lightweight endpoint for uptime probes and load balancer checks
+Route::get('/up', function (Request $request) {
+    return response()->json(['status' => 'ok'], 200);
+});
 // ── Unauthenticated ───────────────────────────────────────────────────────────
 Route::middleware('guest')->group(function () {
     Route::get('/login', fn () => redirect()->route('landing'))->name('login');
