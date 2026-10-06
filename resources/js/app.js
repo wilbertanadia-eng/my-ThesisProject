@@ -15,6 +15,10 @@ document.addEventListener('alpine:init', () => {
             this.dark = !this.dark;
             localStorage.setItem('dark', this.dark);
             document.documentElement.classList.toggle('dark', this.dark);
+            // Dispatch custom event for reactive elements
+            window.dispatchEvent(new CustomEvent('theme-change', { 
+                detail: { dark: this.dark } 
+            }));
         },
         init() {
             document.documentElement.classList.toggle('dark', this.dark);

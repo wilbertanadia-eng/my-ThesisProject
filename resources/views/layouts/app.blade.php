@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" :class="$store.theme.dark ? 'dark' : ''" x-data>
+<html lang="en" x-data @theme-change.window="$el.classList.toggle('dark', $event.detail.dark)">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
