@@ -1,6 +1,6 @@
 {
-  "installCommand": "npm ci && php -r \"copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');\" && php /tmp/composer-setup.php --install-dir=/tmp --filename=composer && php /tmp/composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --no-progress",
-  "buildCommand": "npm run build",
+  "installCommand": "bash scripts/vercel-install.sh",
+  "buildCommand": "bash scripts/vercel-build.sh",
   "devCommand": "npm run dev",
   "functions": {
     "api/**/*.php": {
