@@ -3,15 +3,38 @@
   "buildCommand": "bash scripts/vercel-build.sh",
   "devCommand": "npm run dev",
   "outputDirectory": "public",
-  "functions": {
-    "api/index.php": {
-      "runtime": "vercel-php@0.7.3"
-    }
-  },
   "routes": [
-    { "src": "/(css|js|images|build|storage)/(.*)", "dest": "/$1/$2" },
-    { "src": "/favicon.ico", "dest": "/favicon.ico" },
-    { "src": "/robots.txt", "dest": "/robots.txt" },
-    { "src": "/(.*)", "dest": "/api/index.php" }
+    {
+      "src": "/storage/(.*)",
+      "dest": "/storage/$1"
+    },
+    {
+      "src": "/css/(.*)",
+      "dest": "/css/$1"
+    },
+    {
+      "src": "/js/(.*)",
+      "dest": "/js/$1"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/images/$1"
+    },
+    {
+      "src": "/build/(.*)",
+      "dest": "/build/$1"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/favicon.ico"
+    },
+    {
+      "src": "/robots.txt",
+      "dest": "/robots.txt"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.php"
+    }
   ]
 }
