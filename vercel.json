@@ -1,5 +1,5 @@
 {
-  "installCommand": "npm ci && composer install --no-dev --optimize-autoloader",
+  "installCommand": "npm ci && if command -v php >/dev/null 2>&1; then php -r \"copy('https://getcomposer.org/installer', 'composer-setup.php');\" && php composer-setup.php --no-ansi && php composer.phar install --no-dev --optimize-autoloader --no-interaction; else echo 'php not found, skipping composer install'; fi",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "functions": {
