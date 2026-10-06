@@ -1,6 +1,6 @@
 {
-  "installCommand": "sh ./scripts/vercel-install.sh",
-  "buildCommand": "sh ./scripts/vercel-build.sh",
+  "installCommand": "npm ci && composer install --no-dev --optimize-autoloader",
+  "buildCommand": "npm run build",
   "devCommand": "npm run dev",
   "functions": {
     "api/**/*.php": {
