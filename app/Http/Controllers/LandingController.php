@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Document;
 use App\Models\FinancialTransaction;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LandingController extends Controller
@@ -17,37 +17,46 @@ class LandingController extends Controller
             return redirect()->route('dashboard');
         }
 
-        // Real statistics for the landing page
-        $activeMembersCount = User::where('is_active', true)->count();
-        $totalFunds = FinancialTransaction::income()->approved()->sum('amount');
-        $documentsCount = Document::count();
+        try {
+            // Real statistics for the landing page
+            $activeMembersCount = User::where('is_active', true)->count();
+            $totalFunds = FinancialTransaction::income()->approved()->sum('amount');
+            $documentsCount = Document::count();
 
-        // Recent documents (all documents are public now, so no is_public filter)
-        $recentPublicDocs = Document::with('category', 'owner')
-            ->latest()
-            ->take(3)
-            ->get();
+            // Recent documents (all documents are public now, so no is_public filter)
+            $recentPublicDocs = Document::with('category', 'owner')
+                ->latest()
+                ->take(3)
+                ->get();
 
-        // Featured members, ordered by role level (highest first)
-        $featuredMembers = User::with('role')
-            ->where('users.is_active', true)
-            ->join('roles', 'users.role_id', '=', 'roles.id')
-            ->whereIn('roles.name', [
-                'System Administrator',
-                'Treasurer',
-                'Auditor',
-                'Club Adviser',
-            ])
-            ->orderBy('roles.level', 'asc')
-            ->select('users.*')
-            ->take(10)
-            ->get();        
+            // Featured members, ordered by role level (highest first)
+            $featuredMembers = User::with('role')
+                ->where('users.is_active', true)
+                ->join('roles', 'users.role_id', '=', 'roles.id')
+                ->whereIn('roles.name', [
+                    'System Administrator',
+                    'Treasurer',
+                    'Auditor',
+                    'Club Adviser',
+                ])
+                ->orderBy('roles.level', 'asc')
+                ->select('users.*')
+                ->take(10)
+                ->get();
 
-        // Dynamic roles from DB with active member counts
-        $roles = Role::where('is_visible', true)
-            ->withCount(['users' => fn($q) => $q->where('is_active', true)])
-            ->orderBy('level', 'asc')
-            ->get();
+            // Dynamic roles from DB with active member counts
+            $roles = Role::where('is_visible', true)
+                ->withCount(['users' => fn ($q) => $q->where('is_active', true)])
+                ->orderBy('level', 'asc')
+                ->get();
+        } catch (\Throwable $e) {
+            $activeMembersCount = 0;
+            $totalFunds = 0;
+            $documentsCount = 0;
+            $recentPublicDocs = collect();
+            $featuredMembers = collect();
+            $roles = collect();
+        }
 
         return view('landing', compact(
             'activeMembersCount',
