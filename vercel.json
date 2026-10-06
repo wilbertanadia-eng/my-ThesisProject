@@ -1,6 +1,8 @@
 {
+  "installCommand": "npm ci && composer install --no-dev --optimize-autoloader",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
+  "nodeVersion": "20.x",
   "routes": [
     {
       "src": "/storage/(.*)",
