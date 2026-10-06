@@ -4,6 +4,14 @@
   "devCommand": "npm run dev",
   "routes": [
     {
+      "src": "/",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "(/.*\\.php)$",
+      "dest": "/api/index.php"
+    },
+    {
       "src": "/storage/(.*)",
       "dest": "/storage/$1"
     },
