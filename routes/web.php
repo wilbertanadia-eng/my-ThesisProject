@@ -34,6 +34,16 @@ Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/up', function (Request $request) {
     return response()->json(['status' => 'ok'], 200);
 });
+
+// ── Test endpoint ────────────────────────────────────────────────────────────
+Route::get('/test', function () {
+    return response()->json([
+        'message' => 'PHP is working!',
+        'laravel_version' => app()->version(),
+        'debug_mode' => config('app.debug'),
+        'env' => config('app.env'),
+    ]);
+});
 // ── Unauthenticated ───────────────────────────────────────────────────────────
 Route::middleware('guest')->group(function () {
     Route::get('/login', fn () => redirect()->route('landing'))->name('login');
