@@ -5,21 +5,21 @@
 
 @section('content')
 <div class="max-w-2xl">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl border border-gold-200 dark:border-gold-800 overflow-hidden shadow-sm"
+    <div class="bg-white rounded-2xl border border-gold-200 overflow-hidden shadow-sm"
          x-data="roleForm()">
 
-        <div class="px-5 py-4 border-b border-gray-100 dark:border-gold-800 bg-gray-50 dark:bg-gray-800/50">
-            <h2 class="text-sm font-semibold text-gray-900 dark:text-white">Create New Role</h2>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Define a new role in the system hierarchy</p>
+        <div class="px-5 py-4 border-b border-gray-100 bg-gray-50">
+            <h2 class="text-sm font-semibold text-gray-900">Create New Role</h2>
+            <p class="text-xs text-gray-500 mt-0.5">Define a new role in the system hierarchy</p>
         </div>
 
         <form method="POST" action="{{ route('admin.roles.store') }}" class="p-5 space-y-5">
             @csrf
 
             @if ($errors->any())
-                <div class="p-3 bg-red-50 dark:bg-red-900/30 border border-red-300 dark:border-red-700 rounded-lg">
-                    <p class="text-sm font-semibold text-red-700 dark:text-red-300 mb-1">Please fix the following errors:</p>
-                    <ul class="text-sm text-red-600 dark:text-red-400 space-y-0.5 list-disc list-inside">
+                <div class="p-3 bg-red-50 border border-red-300 rounded-lg">
+                    <p class="text-sm font-semibold text-red-700 mb-1">Please fix the following errors:</p>
+                    <ul class="text-sm text-red-600 space-y-0.5 list-disc list-inside">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -29,22 +29,22 @@
 
             {{-- Role Name --}}
             <div>
-                <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Role Name <span class="text-red-500">*</span>
                 </label>
                 <input type="text" name="name" value="{{ old('name') }}" required maxlength="100"
-                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 dark:bg-gray-700 dark:text-white {{ $errors->has('name') ? 'border-red-400' : '' }}"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 {{ $errors->has('name') ? 'border-red-400' : '' }}"
                     placeholder="Enter role name">
                 @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             {{-- Abbreviation --}}
             <div>
-                <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Abbreviation <span class="text-gray-400 font-normal">(Optional)</span>
                 </label>
                 <input type="text" name="abbreviation" value="{{ old('abbreviation') }}" maxlength="10"
-                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 dark:bg-gray-700 dark:text-white"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500"
                     placeholder="e.g., SA, OA, OM">
                 @error('abbreviation') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
@@ -54,11 +54,11 @@
                 Silent discard: description text was accepted by the form but never saved.
             --}}
             <div>
-                <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Description <span class="text-gray-400 font-normal">(Optional)</span>
                 </label>
                 <textarea name="desc" rows="3" maxlength="500"
-                    class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 dark:bg-gray-700 dark:text-white resize-none"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 resize-none"
                     placeholder="Describe this role…">{{ old('desc') }}</textarea>
                 @error('desc') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
@@ -73,12 +73,12 @@
                 condition where the Alpine getter ran before the <option> existed.
             --}}
             <div>
-                <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Parent Role <span class="text-gray-400 font-normal">(Optional — sets hierarchy level)</span>
                 </label>
                 <select name="parent_id"
                         x-model="selectedParent"
-                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500 dark:bg-gray-700 dark:text-white">
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold-500">
                     <option value="">None (creates at level 2)</option>
                     @foreach($roles as $role)
                         @if($role->level <= 6)
@@ -90,7 +90,7 @@
                         @endif
                     @endforeach
                 </select>
-                <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                <p class="text-xs text-gray-400 mt-1">
                     The new role will be placed one level below the selected parent. Leave empty for level 2.
                 </p>
                 @error('parent_id') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
@@ -103,10 +103,10 @@
                   computedLevel is 2 (no parent = level 2), not 1.
                 - Hidden input carries the resolved level to the controller.
             --}}
-            <div class="p-3 bg-gray-50 dark:bg-gray-700/30 rounded-lg border border-gold-200 dark:border-gray-600">
-                <p class="text-xs text-gray-600 dark:text-gray-300">
+            <div class="p-3 bg-gray-50 rounded-lg border border-gold-200">
+                <p class="text-xs text-gray-600">
                     Computed Level:
-                    <span class="font-semibold text-primary-600 dark:text-primary-400" x-text="computedLevel"></span>
+                    <span class="font-semibold text-primary-600" x-text="computedLevel"></span>
                     <span class="text-gray-400 ml-1">(lower = higher authority)</span>
                 </p>
                 <input type="hidden" name="level" x-model="computedLevel">
@@ -115,7 +115,7 @@
                     Only warn when: level IS 1 AND is_system is NOT checked.
                     Previously this fired on page load because the old default was 1.
                 --}}
-                <p class="mt-2 text-xs text-amber-600 dark:text-amber-400"
+                <p class="mt-2 text-xs text-amber-600"
                    x-show="computedLevel == 1 && !isSystem" x-cloak>
                     ⚠️ Level 1 is reserved for system roles. Enable "System Role" below.
                 </p>
@@ -123,23 +123,23 @@
 
             {{-- System Role --}}
             <div>
-                <label class="block text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     System Role
                 </label>
-                <div class="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-700/50 border border-gold-200 dark:border-gray-600 rounded-lg">
+                <div class="flex items-start gap-3 p-3 bg-gray-50 border border-gold-200 rounded-lg">
                     <input type="hidden" name="is_system" value="0">
                     <input type="checkbox" id="is_system" name="is_system" value="1"
                            x-model="isSystem"
                            {{ old('is_system') ? 'checked' : '' }}
                            class="mt-0.5 w-4 h-4 rounded border-gray-300 text-primary-600 focus:ring-gold-500">
                     <div>
-                        <label for="is_system" class="text-sm text-gray-700 dark:text-gray-300 cursor-pointer font-medium">
+                        <label for="is_system" class="text-sm text-gray-700 cursor-pointer font-medium">
                             Mark as system role
                         </label>
-                        <p class="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
+                        <p class="text-xs text-gray-400 mt-0.5">
                             System roles are protected — their names cannot be changed and they cannot be deleted.
                         </p>
-                        <p class="text-xs text-green-600 dark:text-green-400 mt-1" x-show="isSystem" x-cloak>
+                        <p class="text-xs text-green-600 mt-1" x-show="isSystem" x-cloak>
                             ✓ Level 1 is now permitted.
                         </p>
                     </div>
@@ -148,7 +148,7 @@
             </div>
 
             {{-- Buttons --}}
-            <div class="flex gap-3 pt-4 border-t border-gray-100 dark:border-gold-800">
+            <div class="flex gap-3 pt-4 border-t border-gray-100">
                      <button
                         type="submit"
                         x-data="{ busy: false }"

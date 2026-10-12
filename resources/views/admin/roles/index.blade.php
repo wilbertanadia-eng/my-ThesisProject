@@ -505,11 +505,11 @@ html.dark .pag-btn:not(.disabled):not(.current):hover { color: var(--gold-light)
 
 @php
     $roleColorMap = [
-        'System Administrator' => 'bg-purple-100 text-purple-700 dark:bg-purple-900/50 dark:text-purple-300',
-        'Club Adviser'         => 'bg-amber-100 text-amber-700 dark:bg-amber-900/50 dark:text-amber-300',
-        'Treasurer'            => 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300',
-        'Auditor'              => 'bg-blue-100 text-blue-700 dark:bg-blue-900/50 dark:text-blue-300',
-        'Guest'                => 'bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400',
+        'System Administrator' => 'bg-purple-100 text-purple-700',
+        'Club Adviser'         => 'bg-amber-100 text-amber-700',
+        'Treasurer'            => 'bg-emerald-100 text-emerald-700',
+        'Auditor'              => 'bg-blue-100 text-blue-700',
+        'Guest'                => 'bg-gray-100 text-gray-600',
     ];
 
     $levelLabelMap = [
@@ -616,7 +616,7 @@ html.dark .pag-btn:not(.disabled):not(.current):hover { color: var(--gold-light)
                     <tbody>
                         @forelse ($roles as $role)
                             @php
-                                $colorClass   = $roleColorMap[$role->name] ?? 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300';
+                                $colorClass   = $roleColorMap[$role->name] ?? 'bg-gray-100 text-gray-700';
                                 $levelLabel   = $levelLabelMap[$role->level] ?? "Level {$role->level}";
                                 $isPredefined = (bool) ($role->is_predefined ?? false);
                                 $isHidden     = ! $role->is_visible;

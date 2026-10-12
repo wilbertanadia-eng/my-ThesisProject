@@ -397,7 +397,7 @@ input[type=number] {
 <div class="space-y-5">
     
     {{-- Hero Section --}}
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-800 dark:to-emerald-900 p-6 md:p-7">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 p-6 md:p-7">
         <div class="absolute inset-0 opacity-[0.05]"
              style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,1) 1px, transparent 0); background-size: 28px 28px;"></div>
         <div class="absolute -top-16 right-0 w-64 h-64 rounded-full opacity-20"
@@ -516,7 +516,7 @@ input[type=number] {
                                 </select>
 
                                 <template x-if="categories.length === 0">
-                                    <p class="form-hint text-amber-600 dark:text-amber-400 mt-1">
+                                    <p class="form-hint text-amber-600 mt-1">
                                         No active categories found for this transaction type.
                                         @can('financial_categories.manage')
                                             <a href="{{ route('admin.financial-categories.index') }}" class="underline font-semibold">Manage categories.</a>

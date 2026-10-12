@@ -102,7 +102,7 @@ $faqs = [
             const escaped = q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
             return text.replace(
                 new RegExp('(' + escaped + ')', 'gi'),
-                '<mark class=\'bg-emerald-200 dark:bg-emerald-700/60 text-emerald-900 dark:text-emerald-100 rounded px-0.5\'>$1</mark>'
+                '<mark class=\'bg-emerald-200 text-emerald-900 rounded px-0.5\'>$1</mark>'
             );
         },
 
@@ -120,7 +120,7 @@ $faqs = [
 >
 
     {{-- ── Hero Section ──────────────────────────────────────────────── --}}
-    <div class="relative bg-gradient-to-r from-emerald-700 to-emerald-900 dark:from-emerald-900 dark:to-emerald-950 py-20 px-6 md:px-12 text-center overflow-hidden">
+    <div class="relative bg-gradient-to-r from-emerald-700 to-emerald-900 py-20 px-6 md:px-12 text-center overflow-hidden">
 
         {{-- Back Button --}}
         <div class="absolute top-6 left-6 z-20">
@@ -196,55 +196,55 @@ $faqs = [
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
             <button
                 @click="activeCategory = 'General'; query = ''; openIndex = null; $nextTick(() => $el.closest('.relative').querySelector('#faq-section').scrollIntoView({ behavior: 'smooth' }))"
-                class="bg-white dark:bg-gray-800 rounded-xl border border-emerald-200 dark:border-emerald-800 p-5 text-center hover:shadow-lg hover:border-emerald-400 transition text-left group"
+                class="bg-white rounded-xl border border-emerald-200 p-5 text-center hover:shadow-lg hover:border-emerald-400 transition text-left group"
             >
-                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800/50 transition">
-                    <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 transition">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                     </svg>
                 </div>
-                <h3 class="font-semibold text-gray-900 dark:text-white text-center">Getting Started</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 text-center">New to the portal? Learn the basics.</p>
+                <h3 class="font-semibold text-gray-900 text-center">Getting Started</h3>
+                <p class="text-sm text-gray-500 mt-1 text-center">New to the portal? Learn the basics.</p>
             </button>
 
             <button
                 @click="activeCategory = 'Financial'; query = ''; openIndex = null; $nextTick(() => $el.closest('.relative').querySelector('#faq-section').scrollIntoView({ behavior: 'smooth' }))"
-                class="bg-white dark:bg-gray-800 rounded-xl border border-emerald-200 dark:border-emerald-800 p-5 text-center hover:shadow-lg hover:border-emerald-400 transition group"
+                class="bg-white rounded-xl border border-emerald-200 p-5 text-center hover:shadow-lg hover:border-emerald-400 transition group"
             >
-                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800/50 transition">
-                    <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 transition">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <h3 class="font-semibold text-gray-900 dark:text-white">Financial Records</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">How to add income and expense entries.</p>
+                <h3 class="font-semibold text-gray-900">Financial Records</h3>
+                <p class="text-sm text-gray-500 mt-1">How to add income and expense entries.</p>
             </button>
 
             <a href="mailto:sslg@vsulhs.edu.ph"
-               class="bg-white dark:bg-gray-800 rounded-xl border border-emerald-200 dark:border-emerald-800 p-5 text-center hover:shadow-lg hover:border-emerald-400 transition group">
-                <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 dark:group-hover:bg-emerald-800/50 transition">
-                    <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+               class="bg-white rounded-xl border border-emerald-200 p-5 text-center hover:shadow-lg hover:border-emerald-400 transition group">
+                <div class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-emerald-200 transition">
+                    <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                     </svg>
                 </div>
-                <h3 class="font-semibold text-gray-900 dark:text-white">Contact Support</h3>
-                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Get in touch with the SSLG team.</p>
+                <h3 class="font-semibold text-gray-900">Contact Support</h3>
+                <p class="text-sm text-gray-500 mt-1">Get in touch with the SSLG team.</p>
             </a>
         </div>
 
         {{-- ── FAQ Section ──────────────────────────────────────────── --}}
         <div
             id="faq-section"
-            class="bg-white dark:bg-gray-800 rounded-2xl border border-emerald-200 dark:border-emerald-800 overflow-hidden shadow-sm"
+            class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-sm"
         >
             {{-- FAQ Header with inline search + category filters --}}
-            <div class="px-6 py-4 bg-emerald-50 dark:bg-emerald-900/20 border-b border-emerald-200 dark:border-emerald-800">
+            <div class="px-6 py-4 bg-emerald-50 border-b border-emerald-200">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                        <h2 class="text-xl font-serif font-semibold text-emerald-800 dark:text-emerald-300">
+                        <h2 class="text-xl font-serif font-semibold text-emerald-800">
                             Frequently Asked Questions
                         </h2>
-                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-0.5">
+                        <p class="text-sm text-gray-600 mt-0.5">
                             <span x-text="filtered.length"></span> of {{ count($faqs) }} questions shown
                         </p>
                     </div>
@@ -256,7 +256,7 @@ $faqs = [
                             placeholder="Filter questions…"
                             x-model="query"
                             @input="openIndex = null"
-                            class="w-full px-3 py-1.5 pl-8 pr-7 text-sm rounded-lg border border-emerald-200 dark:border-emerald-700 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
+                            class="w-full px-3 py-1.5 pl-8 pr-7 text-sm rounded-lg border border-emerald-200 bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400 transition"
                         >
                         <svg class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
@@ -264,7 +264,7 @@ $faqs = [
                         <button
                             x-show="query.length > 0"
                             @click="query = ''; openIndex = null"
-                            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition"
                             aria-label="Clear"
                         >
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -281,7 +281,7 @@ $faqs = [
                             @click="activeCategory = cat; openIndex = null"
                             :class="activeCategory === cat
                                 ? 'bg-emerald-600 text-white border-emerald-600'
-                                : 'bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-gray-600 hover:border-emerald-400 hover:text-emerald-600 dark:hover:text-emerald-400'"
+                                : 'bg-white text-gray-600 border-gray-200 hover:border-emerald-400 hover:text-emerald-600'"
                             class="px-3 py-1 text-xs font-medium rounded-full border transition"
                             x-text="cat"
                         ></button>
@@ -290,21 +290,21 @@ $faqs = [
             </div>
 
             {{-- FAQ Items --}}
-            <div class="divide-y divide-gray-100 dark:divide-gray-700">
+            <div class="divide-y divide-gray-100">
 
                 {{-- Results --}}
                 <template x-for="(faq, i) in filtered" :key="faq.originalIndex">
                     <div class="group">
                         <button
                             @click="toggle(faq.originalIndex)"
-                            class="flex justify-between items-start w-full text-left gap-4 px-6 py-4 hover:bg-emerald-50/50 dark:hover:bg-emerald-900/10 transition"
+                            class="flex justify-between items-start w-full text-left gap-4 px-6 py-4 hover:bg-emerald-50/50 transition"
                             :aria-expanded="openIndex === faq.originalIndex"
                         >
                             <div class="flex-1 min-w-0">
                                 {{-- Category badge --}}
-                                <span class="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-400 mb-1.5"
+                                <span class="inline-block text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 mb-1.5"
                                       x-text="faq.category"></span>
-                                <p class="font-medium text-gray-900 dark:text-white text-sm leading-snug"
+                                <p class="font-medium text-gray-900 text-sm leading-snug"
                                    x-html="highlight(faq.question)"></p>
                             </div>
                             <div class="flex-shrink-0 mt-1">
@@ -327,8 +327,8 @@ $faqs = [
                             x-transition:leave-end="opacity-0"
                             class="px-6 pb-4"
                         >
-                            <div class="pl-0 pt-1 border-l-2 border-emerald-300 dark:border-emerald-700 pl-3">
-                                <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed"
+                            <div class="pl-0 pt-1 border-l-2 border-emerald-300 pl-3">
+                                <p class="text-sm text-gray-600 leading-relaxed"
                                    x-html="highlight(faq.answer)"></p>
                             </div>
                         </div>
@@ -341,15 +341,15 @@ $faqs = [
                     x-transition
                     class="py-16 px-6 text-center"
                 >
-                    <div class="w-14 h-14 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div class="w-14 h-14 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                         <svg class="w-7 h-7 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3 class="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">No results found</h3>
-                    <p class="text-sm text-gray-500 dark:text-gray-500 mb-4">
+                    <h3 class="text-sm font-semibold text-gray-700 mb-1">No results found</h3>
+                    <p class="text-sm text-gray-500 mb-4">
                         No questions match
-                        "<span class="italic font-medium text-gray-700 dark:text-gray-300" x-text="query"></span>"
+                        "<span class="italic font-medium text-gray-700" x-text="query"></span>"
                         <template x-if="activeCategory !== 'All'">
                             <span> in <span class="font-medium" x-text="activeCategory"></span></span>
                         </template>
@@ -358,19 +358,19 @@ $faqs = [
                         <button
                             x-show="query.trim().length > 0"
                             @click="query = ''"
-                            class="text-xs px-3 py-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400 hover:bg-emerald-200 dark:hover:bg-emerald-800/50 transition"
+                            class="text-xs px-3 py-1.5 rounded-lg bg-emerald-100 text-emerald-700 hover:bg-emerald-200 transition"
                         >
                             Clear search
                         </button>
                         <button
                             x-show="activeCategory !== 'All'"
                             @click="activeCategory = 'All'"
-                            class="text-xs px-3 py-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                            class="text-xs px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition"
                         >
                             Show all categories
                         </button>
                         <a href="mailto:sslg@vsulhs.edu.ph"
-                           class="text-xs px-3 py-1.5 rounded-lg border border-emerald-300 dark:border-emerald-700 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition">
+                           class="text-xs px-3 py-1.5 rounded-lg border border-emerald-300 text-emerald-600 hover:bg-emerald-50 transition">
                             Contact support
                         </a>
                     </div>
@@ -379,11 +379,11 @@ $faqs = [
         </div>
 
         {{-- ── Contact Section ───────────────────────────────────────── --}}
-        <div class="mt-12 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-6 border border-emerald-200 dark:border-emerald-800">
+        <div class="mt-12 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-200">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                 <div class="flex-1 text-center md:text-left">
-                    <h3 class="text-lg font-serif font-semibold text-emerald-800 dark:text-emerald-300">Still need help?</h3>
-                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Our SSLG support team is ready to assist you.</p>
+                    <h3 class="text-lg font-serif font-semibold text-emerald-800">Still need help?</h3>
+                    <p class="text-sm text-gray-600 mt-1">Our SSLG support team is ready to assist you.</p>
                 </div>
                 <div class="flex gap-4">
                     <a href="mailto:sslg@vsulhs.edu.ph"
@@ -394,7 +394,7 @@ $faqs = [
                         Email Support
                     </a>
                     <a href="{{ route('landing') }}#contact"
-                       class="inline-flex items-center gap-2 px-5 py-2.5 border border-emerald-300 dark:border-emerald-700 text-emerald-700 dark:text-emerald-300 text-sm font-medium rounded-xl hover:bg-emerald-50 dark:hover:bg-emerald-900/30 transition">
+                       class="inline-flex items-center gap-2 px-5 py-2.5 border border-emerald-300 text-emerald-700 text-sm font-medium rounded-xl hover:bg-emerald-50 transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                         </svg>

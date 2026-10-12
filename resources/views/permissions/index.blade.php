@@ -792,7 +792,7 @@ html.dark .permission-badge-manage { background: rgba(16,185,129,0.2); color: #3
             x-show="changed"
             x-cloak
             @click="discard()"
-            class="text-sm text-text-3 hover:text-gold dark:hover:text-gold-light px-4 py-2 rounded-xl border border-border hover:border-gold/50 hover:bg-gold/5 transition-all duration-200">
+            class="text-sm text-text-3 hover:text-gold px-4 py-2 rounded-xl border border-border hover:border-gold/50 hover:bg-gold/5 transition-all duration-200">
         Discard Changes
     </button>
 </div>
@@ -857,12 +857,12 @@ html.dark .permission-badge-manage { background: rgba(16,185,129,0.2); color: #3
                             <div class="permission-name">
                                 {{ $perm->name }}
                                 @if($isManage)
-                                    <span class="ml-1 text-xs text-emerald-600 dark:text-emerald-400">★</span>
+                                    <span class="ml-1 text-xs text-emerald-600">★</span>
                                 @endif
                             </div>
                             <div class="permission-slug">{{ $perm->slug }}</div>
                             @if($isManage)
-                                <p class="text-xs text-emerald-600 dark:text-emerald-400 mt-0.5">Grants full module access</p>
+                                <p class="text-xs text-emerald-600 mt-0.5">Grants full module access</p>
                             @endif
                             <span class="permission-badge {{ $badgeClass }}">
                                 {{ ucfirst($perm->action ?? 'permission') }}

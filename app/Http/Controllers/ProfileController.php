@@ -2,250 +2,59 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Document;
-use App\Models\FinancialTransaction;
-use Illuminate\Support\Facades\Storage;
-use App\Models\Member;
-use App\Services\CloudinaryService;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    public function __construct()
+    /**
+     * Display the user's profile form.
+     */
+    public function edit(Request $request): View
     {
-        $this->middleware('auth.custom');
+        return view('profile.edit', [
+            'user' => $request->user(),
+        ]);
     }
-
-    // -------------------------------------------------------------------------
-    // Guest restriction helper
-    // -------------------------------------------------------------------------
 
     /**
-     * Redirect guest users back with a friendly message.
+     * Update the user's profile information.
      */
-    private function blockGuest(string $action = 'perform this action')
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        if (Auth::user()->email === 'guest@gmail.com') {
-            return redirect()->route('dashboard')
-                ->with('error', "Guest accounts cannot {$action}.");
+        $request->user()->fill($request->validated());
+
+        if ($request->user()->isDirty('email')) {
+            $request->user()->email_verified_at = null;
         }
-        return null;
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    // -------------------------------------------------------------------------
-    // Index – show profile (blocked for guest)
-    // -------------------------------------------------------------------------
-
-    public function index()
+    /**
+     * Delete the user's account.
+     */
+    public function destroy(Request $request): RedirectResponse
     {
-        if ($redirect = $this->blockGuest('access profile settings')) {
-            return $redirect;
-        }
-
-        $user = Auth::user()->load('role');
-
-        $documentsCount = Document::where('owner_id', $user->id)->count();
-        $transactionsCount = FinancialTransaction::where('user_id', $user->id)->count();
-
-        return view('profile.index', compact('user', 'documentsCount', 'transactionsCount'));
-    }
-
-    // -------------------------------------------------------------------------
-    // Update Profile – blocked for guest
-    // -------------------------------------------------------------------------
-
-    public function updateProfile(Request $request)
-    {
-        if ($redirect = $this->blockGuest('modify profile')) {
-            return $redirect;
-        }
-
-        $user = Auth::user();
-
-        $validated = $request->validate([
-            // 'full_name'   => 'required|string|max:255',
-            'email'       => 'required|email|unique:users,email,' . $user->id,
-            'first_name'  => 'nullable|string|max:255',
-            'last_name'   => 'nullable|string|max:255',
-            'middle_name' => 'nullable|string|max:255',
-            'student_id'  => 'nullable|string|max:50|unique:users,student_id,' . $user->id,
-            'year_level'  => 'nullable|string|max:50',
-            'gender'      => 'nullable|string|in:Male,Female,Other',
-            'phone'       => 'nullable|string|max:20|unique:users,phone,' . $user->id,
-            'birthday'    => 'nullable|date',
-            'avatar'      => 'nullable|image|mimes:jpg,jpeg,png,gif,webp|max:2048',
+        $request->validateWithBag('userDeletion', [
+            'password' => ['required', 'current_password'],
         ]);
 
-        // ✅ Handle avatar upload
-        if ($request->hasFile('avatar') && $request->file('avatar')->isValid()) {
+        $user = $request->user();
 
-            $hasCloudinary = !empty(config('cloudinary.cloud_name'))
-                        && !empty(config('cloudinary.api_key'))
-                        && !empty(config('cloudinary.api_secret'));
+        Auth::logout();
 
-            if ($hasCloudinary) {
-                $cloudinary = new CloudinaryService();
+        $user->delete();
 
-                // Delete old Cloudinary avatar
-                if ($user->avatar && str_starts_with($user->avatar, 'https://res.cloudinary.com')) {
-                    preg_match('/\/v\d+\/(.+)\.[a-z]+$/i', parse_url($user->avatar, PHP_URL_PATH), $matches);
-                    if (! empty($matches[1])) {
-                        $cloudinary->delete($matches[1]);
-                    }
-                }
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
 
-                $uploaded     = $cloudinary->upload($request->file('avatar'), 'vsulhs-sslg/avatars');
-                $user->avatar = $uploaded['url'];
-
-            } else {
-                // Local fallback for Laragon dev
-                if ($user->avatar && ! str_starts_with($user->avatar, 'http')) {
-                    Storage::disk('public')->delete($user->avatar);
-                }
-                $user->avatar = $request->file('avatar')->store('avatars', 'public');
-            }
-        }
-
-        if ($this->shouldClearYearLevel($user->role_id, $user->position)) {
-            $validated['year_level'] = null;
-        }
-
-        $user->first_name  = $validated['first_name'];
-        $user->middle_name = $validated['middle_name'] ?? null;
-        $user->last_name   = $validated['last_name'];
-
-        $user->attributes['full_name'] = trim(
-            $validated['first_name'] . ' ' .
-            (! empty($validated['middle_name']) ? $validated['middle_name'] . ' ' : '') .
-            $validated['last_name']
-        );
-
-        $user->email = $validated['email'];
-
-        if (isset($validated['student_id'])) $user->student_id = $validated['student_id'];
-        if (isset($validated['year_level'])) $user->year_level = $validated['year_level'];
-        if (isset($validated['gender']))     $user->gender     = $validated['gender'];
-        if (isset($validated['birthday']))   $user->birthday   = $validated['birthday'];
-
-        if (isset($validated['phone'])) {
-            $phone = preg_replace('/[^0-9]/', '', $validated['phone']);
-            if (str_starts_with($phone, '63')) $phone = substr($phone, 2);
-            if (str_starts_with($phone, '0'))  $phone = substr($phone, 1);
-            $user->phone = '+63' . substr($phone, 0, 10);
-        }
-
-        $user->save();
-
-        return redirect()->route('profile.index')
-            ->with('success', '✅ Profile updated successfully!');
-    }
-
-    // -------------------------------------------------------------------------
-    // Update Password – blocked for guest
-    // -------------------------------------------------------------------------
-
-    public function updatePassword(Request $request)
-    {
-        if ($redirect = $this->blockGuest('change password')) {
-            return $redirect;
-        }
-
-        $user = Auth::user();
-
-        $validated = $request->validate([
-            'current_password' => 'required',
-            'new_password'     => 'required|min:8|confirmed',
-        ], [
-            'current_password.required' => 'Current password is required.',
-            'new_password.required'     => 'New password is required.',
-            'new_password.min'          => 'New password must be at least 8 characters.',
-            'new_password.confirmed'    => 'New password confirmation does not match.',
-        ]);
-
-        if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'Current password is incorrect.'])->withInput();
-        }
-
-        if (Hash::check($request->new_password, $user->password)) {
-            return back()
-                ->withErrors(['new_password' => 'New password cannot be the same as your current password.'])
-                ->withInput()
-                ->with('password_error', 'same_password');
-        }
-
-        $user->password = Hash::make($request->new_password);
-        $user->save();
-
-        return redirect()->route('profile.index')
-            ->with('password_success', '🔒 Your password has been changed successfully!');
-    }
-
-    // -------------------------------------------------------------------------
-    // Update Theme – blocked for guest (but keep JSON response)
-    // -------------------------------------------------------------------------
-
-    public function updateTheme(Request $request)
-    {
-        if ($redirect = $this->blockGuest('change theme')) {
-            return $redirect;
-        }
-
-        $user = Auth::user();
-
-        $validated = $request->validate([
-            'theme' => 'required|in:light,dark',
-        ]);
-
-        $user->theme = $validated['theme'];
-        $user->save();
-
-        return response()->json(['success' => true]);
-    }
-
-    // -------------------------------------------------------------------------
-    // Profile Stats – blocked for guest (return JSON error)
-    // -------------------------------------------------------------------------
-
-    public function getProfileStats()
-    {
-        if (Auth::user()->email === 'guest@gmail.com') {
-            return response()->json(['error' => 'Guest accounts cannot access profile stats.'], 403);
-        }
-
-        $user = Auth::user();
-
-        $stats = [
-            'member_since'       => $user->created_at?->format('F d, Y'),
-            'last_login'         => $user->last_login_at?->format('F d, Y H:i'),
-            'documents_uploaded' => $user->documents()->count(),
-            'role_name'          => $user->role->name ?? 'N/A',
-            'role_abbreviation'  => $user->role->abbreviation ?? 'N/A',
-            'is_verified'        => $user->hasVerifiedEmail(),
-        ];
-
-        return response()->json($stats);
-    }
-
-    // -------------------------------------------------------------------------
-    // Helper
-    // -------------------------------------------------------------------------
-
-    private function shouldClearYearLevel(int $roleId, ?string $position): bool
-    {
-        $positionsForRole = Member::VALID_POSITIONS[$roleId] ?? [];
-
-        if (empty($positionsForRole)) {
-            return true;
-        }
-
-        $nonStudent = Member::NON_STUDENT_POSITIONS;
-
-        if (array_diff($positionsForRole, $nonStudent) === []) {
-            return true;
-        }
-
-        return $position !== null && in_array($position, $nonStudent, true);
+        return Redirect::to('/');
     }
 }

@@ -471,16 +471,16 @@ html.dark .info-box {
     {{-- Flash Messages --}}
     @foreach (['success' => 'emerald', 'error' => 'red', 'info' => 'blue'] as $type => $color)
         @if (session($type))
-            <div class="bg-{{ $color }}-50 dark:bg-{{ $color }}-900/20 border border-{{ $color }}-200 dark:border-{{ $color }}-800 rounded-lg p-3 anim-1">
-                <p class="text-sm font-medium text-{{ $color }}-700 dark:text-{{ $color }}-400">{{ session($type) }}</p>
+            <div class="bg-{{ $color }}-50 $color }}-900/20 border border-{{ $color }}-200 $color }}-800 rounded-lg p-3 anim-1">
+                <p class="text-sm font-medium text-{{ $color }}-700 $color }}-400">{{ session($type) }}</p>
             </div>
         @endif
     @endforeach
 
     @if ($errors->any())
-        <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 anim-1">
-            <p class="text-sm font-semibold text-red-700 dark:text-red-400 mb-1">Please fix the following errors:</p>
-            <ul class="text-sm text-red-600 dark:text-red-400 space-y-0.5 list-disc list-inside">
+        <div class="bg-red-50 border border-red-200 rounded-lg p-3 anim-1">
+            <p class="text-sm font-semibold text-red-700 mb-1">Please fix the following errors:</p>
+            <ul class="text-sm text-red-600 space-y-0.5 list-disc list-inside">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -508,12 +508,12 @@ html.dark .info-box {
                     </div>
                 </div>
                 <div class="p-6">
-                    <div class="text-center p-6 bg-amber-50 dark:bg-amber-900/20 rounded-xl mb-6">
-                        <svg class="w-12 h-12 mx-auto text-amber-500 dark:text-amber-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="text-center p-6 bg-amber-50 rounded-xl mb-6">
+                        <svg class="w-12 h-12 mx-auto text-amber-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                         </svg>
-                        <p class="text-amber-700 dark:text-amber-400 font-semibold">System Role — Cannot be edited</p>
-                        <p class="text-sm text-amber-600 dark:text-amber-500 mt-1">System roles are protected and cannot be modified.</p>
+                        <p class="text-amber-700 font-semibold">System Role — Cannot be edited</p>
+                        <p class="text-sm text-amber-600 mt-1">System roles are protected and cannot be modified.</p>
                     </div>
 
                     <div class="space-y-4">

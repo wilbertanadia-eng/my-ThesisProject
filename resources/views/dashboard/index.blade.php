@@ -498,7 +498,7 @@
                 </div>
                 <span class="section-label" style="margin:0; color:#E11D48;">Expenses</span>
             </div>
-            <p class="text-2xl md:text-3xl font-bold leading-none break-all text-rose-600 dark:text-rose-400"
+            <p class="text-2xl md:text-3xl font-bold leading-none break-all text-rose-600"
                style="font-family:'DM Mono',monospace;">
                 ₱{{ number_format($expenseTotal, 0) }}
             </p>
@@ -547,7 +547,7 @@
                 </div>
                 <span class="section-label" style="margin:0; color:#B45309;">Pending</span>
             </div>
-            <p class="text-2xl md:text-3xl font-bold leading-none text-amber-600 dark:text-amber-400"
+            <p class="text-2xl md:text-3xl font-bold leading-none text-amber-600"
                style="font-family:'DM Mono',monospace;">
                 {{ $pendingTransactions }}
             </p>
@@ -605,7 +605,7 @@
                         <div class="flex items-center gap-1.5">
                             <span class="w-2.5 h-2.5 rounded-sm" style="background:#F43F5E;"></span>
                             <span class="text-[11px] font-medium" style="color:var(--text-3);">Expenses</span>
-                            <span class="text-[11px] font-bold text-rose-600 dark:text-rose-400"
+                            <span class="text-[11px] font-bold text-rose-600"
                                   style="font-family:'DM Mono',monospace;">
                                 ₱{{ number_format($expenseTotal, 0) }}
                             </span>
@@ -651,7 +651,7 @@
                 </div>
                 <div class="stat-bar-cell">
                     <p class="section-label" style="margin:0 0 0.25rem;">Avg / Period</p>
-                    <p class="text-sm font-bold text-rose-600 dark:text-rose-400" style="font-family:'DM Mono',monospace;">
+                    <p class="text-sm font-bold text-rose-600" style="font-family:'DM Mono',monospace;">
                         ₱{{ number_format($expenseTotal / max(count($chartData['expense']), 1), 0) }}
                     </p>
                     <p class="text-[10px] mt-0.5" style="color:var(--text-3);">expense</p>
@@ -786,7 +786,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white dark:border-gray-900"></span>
+                            <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-white"></span>
                         </div>
                         <div class="min-w-0">
                             <h3 class="text-white font-bold text-base truncate">{{ $user->full_name }}</h3>

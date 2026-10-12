@@ -684,9 +684,9 @@ html.dark .backups-info-list { color: #93c5fd; }
                 </div>
 
                 <div class="p-5">
-                    <div class="mb-4 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg">
-                        <p class="text-xs font-semibold text-amber-800 dark:text-amber-300">⚠️ Warning</p>
-                        <p class="text-xs text-amber-700 dark:text-amber-400 mt-1">
+                    <div class="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                        <p class="text-xs font-semibold text-amber-800">⚠️ Warning</p>
+                        <p class="text-xs text-amber-700 mt-1">
                             Restoring will re-import documents and files. Existing records
                             are skipped or overwritten based on your chosen mode.
                         </p>
@@ -761,15 +761,15 @@ html.dark .backups-info-list { color: #93c5fd; }
                             📤 Restore Backup
                         </button>
 
-                        <div id="restore-confirm" class="hidden mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                            <p class="text-xs font-semibold text-red-800 dark:text-red-300 mb-1">Confirm restore?</p>
-                            <p class="text-xs text-red-700 dark:text-red-400 mb-3">
+                        <div id="restore-confirm" class="hidden mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                            <p class="text-xs font-semibold text-red-800 mb-1">Confirm restore?</p>
+                            <p class="text-xs text-red-700 mb-3">
                                 This will re-import all documents and files from the ZIP.
                                 Make sure you've selected the correct restore mode.
                             </p>
                             <div class="flex gap-2">
                                 <button type="submit" class="flex-1 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition">Yes, restore</button>
-                                <button type="button" onclick="cancelRestore()" class="flex-1 border border-gray-200 dark:border-gray-600 text-text-3 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">Cancel</button>
+                                <button type="button" onclick="cancelRestore()" class="flex-1 border border-gray-200 text-text-3 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-50 transition">Cancel</button>
                             </div>
                         </div>
                     </form>
@@ -787,7 +787,7 @@ html.dark .backups-info-list { color: #93c5fd; }
                     <div class="flex items-center justify-between mb-3">
                         <h2 class="backups-card-title text-text-2 flex items-center gap-2">
                             <span>🗂️</span> Saved Backups
-                            <span class="ml-1 bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold px-2 py-0.5 rounded-full">
+                            <span class="ml-1 bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full">
                                 {{ $stats['count'] }}
                             </span>
                         </h2>
@@ -918,10 +918,10 @@ html.dark .backups-info-list { color: #93c5fd; }
                             </div>
 
                             {{-- Inline delete confirm panel --}}
-                            <div class="delete-confirm hidden mt-3 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                                <p class="text-xs font-semibold text-red-800 dark:text-red-300 mb-0.5">Delete this backup?</p>
-                                <p class="delete-filename text-xs text-red-600 dark:text-red-400 font-mono mb-2 break-all"></p>
-                                <p class="text-xs text-red-600 dark:text-red-400 mb-2">This cannot be undone and will permanently remove the file.</p>
+                            <div class="delete-confirm hidden mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                                <p class="text-xs font-semibold text-red-800 mb-0.5">Delete this backup?</p>
+                                <p class="delete-filename text-xs text-red-600 font-mono mb-2 break-all"></p>
+                                <p class="text-xs text-red-600 mb-2">This cannot be undone and will permanently remove the file.</p>
                                 <div class="flex gap-2">
                                     <form method="POST" class="delete-form flex-1" style="display:contents">
                                         @csrf
@@ -933,7 +933,7 @@ html.dark .backups-info-list { color: #93c5fd; }
                                     </form>
                                     <button type="button"
                                             onclick="hideDeleteConfirm(this)"
-                                            class="flex-1 border border-gray-200 dark:border-gray-600 text-text-3 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                                            class="flex-1 border border-gray-200 text-text-3 text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-gray-50 transition">
                                         Cancel
                                     </button>
                                 </div>
@@ -984,7 +984,7 @@ function syncCatUI() {
 
     preview.innerHTML = boxes.map(cb => {
         const name = cb.closest('.backups-checkbox-item').querySelector('.backups-checkbox-label').textContent.trim();
-        return `<span class="text-xs bg-emerald-100 dark:bg-emerald-900/40 text-emerald-800 dark:text-emerald-300 px-2 py-0.5 rounded-full font-medium">${name}</span>`;
+        return `<span class="text-xs bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full font-medium">${name}</span>`;
     }).join('');
 }
 

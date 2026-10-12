@@ -5,15 +5,15 @@
 
 @section('content')
 <div x-data="resetPasswordForm()" class="max-w-md mx-auto">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gold-800 p-6">
+    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6">
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
             <input type="hidden" name="token" value="{{ $token }}">
 
             <div class="mb-4">
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                 <input type="email" name="email" value="{{ $email ?? old('email') }}" required autofocus
-                       class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
+                       class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500">
                 @error('email')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -21,10 +21,10 @@
 
             {{-- New Password with toggle --}}
             <div class="mb-4">
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">New Password</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">New Password</label>
                 <div class="relative">
                     <input :type="showPassword ? 'text' : 'password'" name="password" required
-                           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 pr-10">
+                           class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 pr-10">
                     <button type="button" @click="showPassword = !showPassword"
                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
                         <svg x-show="!showPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,10 +43,10 @@
 
             {{-- Confirm Password with toggle --}}
             <div class="mb-4">
-                <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Confirm Password</label>
+                <label class="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
                 <div class="relative">
                     <input :type="showConfirmPassword ? 'text' : 'password'" name="password_confirmation" required
-                           class="w-full border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 pr-10">
+                           class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 pr-10">
                     <button type="button" @click="showConfirmPassword = !showConfirmPassword"
                             class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600">
                         <svg x-show="!showConfirmPassword" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

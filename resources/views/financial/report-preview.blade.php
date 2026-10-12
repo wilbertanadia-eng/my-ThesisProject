@@ -3,12 +3,12 @@
 @section('title', 'Generate Financial Report')
 
 @section('content')
-<div class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-sm p-6">
+<div class="max-w-2xl mx-auto bg-white rounded-xl shadow-sm p-6">
     <h1 class="text-2xl font-bold mb-6">Generate Financial Report</h1>
 
     @if ($errors->any())
-        <div class="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-            <ul class="text-sm text-red-600 dark:text-red-400 list-disc list-inside">
+        <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <ul class="text-sm text-red-600 list-disc list-inside">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -20,39 +20,39 @@
         @csrf
 
         <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label class="block text-sm font-medium text-gray-700 mb-1">
                 Organization / Club Name
             </label>
             <input type="text" name="organization" id="organization"
                    value="{{ old('organization', auth()->user()->organization ?? '') }}"
-                   class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 dark:bg-gray-700">
+                   class="w-full border border-gray-300 rounded-lg px-3 py-2">
         </div>
 
         <div class="grid grid-cols-2 gap-4 mb-4">
             <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Start Date</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Start Date</label>
                 <input type="date" name="start_date" id="start_date" required
-                       class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 dark:bg-gray-700">
+                       class="w-full border border-gray-300 rounded-lg px-3 py-2">
             </div>
             <div>
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">End Date</label>
+                <label class="block text-sm font-medium text-gray-700 mb-1">End Date</label>
                 <input type="date" name="end_date" id="end_date" required
-                       class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 dark:bg-gray-700">
+                       class="w-full border border-gray-300 rounded-lg px-3 py-2">
             </div>
         </div>
 
         <div class="mb-4">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+            <label class="block text-sm font-medium text-gray-700 mb-1">
                 Previous Cash Deposited (optional)
             </label>
             <input type="number" step="0.01" name="previous_cash" id="previous_cash" value="0"
-                   class="w-full border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 dark:bg-gray-700">
+                   class="w-full border border-gray-300 rounded-lg px-3 py-2">
             <p class="text-xs text-gray-500 mt-1">If there was a previous balance, enter it here.</p>
         </div>
 
         {{-- File Format --}}
         <div class="mb-6">
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+            <label class="block text-sm font-medium text-gray-700 mb-2">
                 File Format
             </label>
             <div class="flex gap-3">
@@ -64,8 +64,8 @@
                 <label class="flex-1 cursor-pointer">
                     <input type="radio" name="format" value="{{ $fmt['value'] }}"
                            class="sr-only peer" {{ $fmt['value'] === 'pdf' ? 'checked' : '' }}>
-                    <div class="border-2 border-gray-200 dark:border-gray-600 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 dark:peer-checked:bg-emerald-900/20 rounded-lg p-3 text-center transition">
-                        <div class="font-medium text-sm text-gray-700 dark:text-gray-300">{{ $fmt['label'] }}</div>
+                    <div class="border-2 border-gray-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 rounded-lg p-3 text-center transition">
+                        <div class="font-medium text-sm text-gray-700">{{ $fmt['label'] }}</div>
                         <div class="text-xs text-gray-400 mt-0.5">{{ $fmt['desc'] }}</div>
                     </div>
                 </label>

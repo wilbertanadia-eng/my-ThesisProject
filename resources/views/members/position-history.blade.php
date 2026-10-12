@@ -540,18 +540,18 @@ function positionHistoryComponent(memberId) {
         },
         
         getBadgeClass(position) {
-            if (!position || position === '—') return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400';
+            if (!position || position === '—') return 'bg-gray-100 text-gray-800';
             
             const pos = position.toLowerCase();
             
             // Match based on your role structure
-            if (pos === 'system administrator') return 'bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-400';
-            if (pos === 'club adviser') return 'bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-400';
-            if (pos === 'treasurer') return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/50 dark:text-emerald-400';
-            if (pos === 'auditor') return 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-400';
-            if (pos === 'guest') return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400';
+            if (pos === 'system administrator') return 'bg-purple-100 text-purple-800';
+            if (pos === 'club adviser') return 'bg-amber-100 text-amber-800';
+            if (pos === 'treasurer') return 'bg-emerald-100 text-emerald-800';
+            if (pos === 'auditor') return 'bg-blue-100 text-blue-800';
+            if (pos === 'guest') return 'bg-gray-100 text-gray-800';
             
-            return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-400';
+            return 'bg-gray-100 text-gray-800';
         },
         
         getTimelineBadgeClass(oldPosition, newPosition) {

@@ -654,12 +654,12 @@ html.dark .pag-btn:not(.disabled):not(.current):hover { color: var(--gold-light)
                         </td>
                         <td class="center">
                             @if($member->email_verified_at)
-                                <span class="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 text-xs">
+                                <span class="inline-flex items-center gap-1 text-emerald-600 text-xs">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                                     Yes
                                 </span>
                             @else
-                                <span class="inline-flex items-center gap-1 text-amber-600 dark:text-amber-400 text-xs">
+                                <span class="inline-flex items-center gap-1 text-amber-600 text-xs">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
                                     No
                                 </span>
@@ -667,12 +667,12 @@ html.dark .pag-btn:not(.disabled):not(.current):hover { color: var(--gold-light)
                         </td>
                         <td class="center">
                             @if($member->is_active)
-                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">
+                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-700">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                     Active
                                 </span>
                             @else
-                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300">
+                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-700">
                                     <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
                                     Inactive
                                 </span>
@@ -785,14 +785,14 @@ html.dark .pag-btn:not(.disabled):not(.current):hover { color: var(--gold-light)
             <div class="flex flex-wrap gap-2 mb-3">
                 <span class="badge-role badge-role-{{ $badgeType }}">{{ $member->role->name }}</span>
                 @if($member->is_active)
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300">● Active</span>
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-emerald-100 text-emerald-700">● Active</span>
                 @else
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-red-100 dark:bg-red-900/50 text-red-700 dark:text-red-300">○ Inactive</span>
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-red-100 text-red-700">○ Inactive</span>
                 @endif
                 @if($member->email_verified_at)
-                    <span class="text-emerald-600 dark:text-emerald-400 text-xs">✓ Verified</span>
+                    <span class="text-emerald-600 text-xs">✓ Verified</span>
                 @else
-                    <span class="text-amber-600 dark:text-amber-400 text-xs">⚠ Unverified</span>
+                    <span class="text-amber-600 text-xs">⚠ Unverified</span>
                 @endif
             </div>
             <div class="flex items-center justify-between">

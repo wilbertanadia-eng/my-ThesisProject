@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="max-w-xl mx-auto">
-    <div class="bg-white dark:bg-gray-800 rounded-xl border border-gold-200 dark:border-gold-800 p-6">
+    <div class="bg-white rounded-xl border border-gold-200 p-6">
         <form method="POST" action="{{ route('admin.document-categories.update', $documentCategory) }}">
             @csrf
             @method('PUT')
@@ -13,13 +13,13 @@
             <div class="mb-4">
                 <label class="block text-sm font-semibold mb-2">Name <span class="text-red-500">*</span></label>
                 <input type="text" name="name" value="{{ old('name', $documentCategory->name) }}" required
-                       class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2">
+                       class="w-full border border-gold-300 rounded-lg px-4 py-2">
             </div>
 
             <div class="mb-4">
                 <label class="block text-sm font-semibold mb-2">Description</label>
                 <textarea name="description" rows="3"
-                          class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2">{{ old('description', $documentCategory->description) }}</textarea>
+                          class="w-full border border-gold-300 rounded-lg px-4 py-2">{{ old('description', $documentCategory->description) }}</textarea>
             </div>
 
             <div class="mb-6">

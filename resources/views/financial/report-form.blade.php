@@ -7,7 +7,7 @@
 <div class="max-w-2xl mx-auto">
 
     {{-- Emerald Gradient Header --}}
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-800 dark:to-emerald-900 p-6 mb-6">
+    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-600 to-emerald-700 p-6 mb-6">
         <div class="relative z-10">
             <h1 class="text-2xl font-bold text-white">Financial Report Generator</h1>
             <p class="text-emerald-100 text-sm mt-1">Generate comprehensive financial reports</p>
@@ -16,12 +16,12 @@
     </div>
 
     {{-- Form Card --}}
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gold-200 dark:border-gold-800 overflow-hidden">
+    <div class="bg-white rounded-2xl shadow-xl border border-gold-200 overflow-hidden">
         <div class="p-6">
 
             @if ($errors->any())
-                <div class="mb-4 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                    <ul class="text-sm text-red-600 dark:text-red-400 list-disc list-inside">
+                <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <ul class="text-sm text-red-600 list-disc list-inside">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -33,42 +33,42 @@
                 @csrf
 
                 <div class="mb-4">
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
                         Organization / Club Name
                     </label>
                     <input type="text" name="organization"
                            value="{{ old('organization', auth()->user()->organization ?? '') }}"
-                           class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                           class="w-full border border-gold-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mb-4">
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">Start Date <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Start Date <span class="text-red-500">*</span></label>
                         <input type="date" name="start_date" id="field_start_date" required
-                               class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                               class="w-full border border-gold-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">End Date <span class="text-red-500">*</span></label>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">End Date <span class="text-red-500">*</span></label>
                         <input type="date" name="end_date" id="field_end_date" required
-                               class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                               class="w-full border border-gold-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                     </div>
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">
                         Previous Cash Deposited (optional)
                     </label>
                     <div class="flex">
-                        <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gold-300 dark:border-gold-600 bg-gray-50 dark:bg-gray-700 text-gray-500 text-sm select-none">₱</span>
+                        <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gold-300 bg-gray-50 text-gray-500 text-sm select-none">₱</span>
                         <input type="number" step="0.01" name="previous_cash" value="0"
-                               class="flex-1 border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-r-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                               class="flex-1 border border-gold-300 rounded-r-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">If there was a previous balance, enter it here.</p>
+                    <p class="text-xs text-gray-500 mt-1">If there was a previous balance, enter it here.</p>
                 </div>
 
                 {{-- File Format - Smaller boxes --}}
                 <div class="mb-6">
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">
                         File Format <span class="text-red-500">*</span>
                     </label>
                     <div class="grid grid-cols-3 gap-2">
@@ -80,17 +80,17 @@
                         <label class="cursor-pointer">
                             <input type="radio" name="format" value="{{ $fmt['value'] }}"
                                    class="sr-only peer" {{ $fmt['value'] === 'pdf' ? 'checked' : '' }}>
-                            <div class="border-2 border-gold-200 dark:border-gold-800 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 dark:peer-checked:bg-emerald-900/20 rounded-lg py-2.5 text-center transition hover:border-gold-400 cursor-pointer">
+                            <div class="border-2 border-gold-200 peer-checked:border-emerald-500 peer-checked:bg-emerald-50 rounded-lg py-2.5 text-center transition hover:border-gold-400 cursor-pointer">
                                 <div class="text-lg">{{ $fmt['icon'] }}</div>
-                                <div class="text-xs font-medium text-gray-700 dark:text-gray-300">{{ $fmt['label'] }}</div>
-                                <div class="text-[10px] text-gray-400 dark:text-gray-500">{{ $fmt['desc'] }}</div>
+                                <div class="text-xs font-medium text-gray-700">{{ $fmt['label'] }}</div>
+                                <div class="text-[10px] text-gray-400">{{ $fmt['desc'] }}</div>
                             </div>
                         </label>
                         @endforeach
                     </div>
                 </div>
 
-                <div class="flex gap-3 pt-4 border-t border-gold-200 dark:border-gold-800">
+                <div class="flex gap-3 pt-4 border-t border-gold-200">
                     <button type="submit"
                             class="flex-1 bg-emerald-600 hover:bg-gold-500 text-white font-semibold py-2.5 px-4 rounded-lg transition shadow-sm flex items-center justify-center gap-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,7 +110,7 @@
                         Preview
                     </button>
                 </div>
-                <p class="text-xs text-gray-400 dark:text-gray-500 mt-3 text-center">
+                <p class="text-xs text-gray-400 mt-3 text-center">
                     💡 Preview shows PDF layout. Use <strong>Download</strong> to get your chosen format.
                 </p>
             </form>

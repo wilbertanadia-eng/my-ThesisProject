@@ -5,8 +5,8 @@
 
 @section('content')
 <div class="max-w-2xl mx-auto">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gold-200 dark:border-gold-800 overflow-hidden">
-        <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-emerald-800 dark:to-emerald-900 px-6 py-4">
+    <div class="bg-white rounded-2xl shadow-xl border border-gold-200 overflow-hidden">
+        <div class="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -26,16 +26,16 @@
                 @method('PUT')
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Name <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Name <span class="text-red-500">*</span></label>
                     <input type="text" name="name" value="{{ old('name', $financialCategory->name) }}" required maxlength="100"
-                           class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                           class="w-full border border-gold-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                     @error('name')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Applies To <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Applies To <span class="text-red-500">*</span></label>
                     <select name="type" required
-                            class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                            class="w-full border border-gold-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                         <option value="income"     {{ old('type', $financialCategory->type) === 'income'     ? 'selected' : '' }}>Income only</option>
                         <option value="expense"    {{ old('type', $financialCategory->type) === 'expense'    ? 'selected' : '' }}>Expense only</option>
                         <option value="receivable" {{ old('type', $financialCategory->type) === 'receivable' ? 'selected' : '' }}>Receivable only</option>
@@ -44,19 +44,19 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Description</label>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1">Description</label>
                     <input type="text" name="description" value="{{ old('description', $financialCategory->description) }}" maxlength="255"
-                           class="w-full border border-gold-300 dark:border-gold-600 dark:bg-gray-700 dark:text-white rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
+                           class="w-full border border-gold-300 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent">
                     @error('description')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
                 </div>
 
-                <div class="flex gap-3 pt-4 border-t border-gold-200 dark:border-gold-800">
+                <div class="flex gap-3 pt-4 border-t border-gold-200">
                     <button type="submit"
                             class="flex-1 bg-emerald-600 hover:bg-gold-500 text-white font-semibold py-2 rounded-lg transition shadow-sm">
                         Save Changes
                     </button>
                     <a href="{{ route('admin.financial-categories.index') }}"
-                       class="flex-1 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 font-semibold py-2 rounded-lg text-center transition">
+                       class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 rounded-lg text-center transition">
                         Cancel
                     </a>
                 </div>
