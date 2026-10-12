@@ -1122,7 +1122,7 @@
                     <div><strong>Error:</strong> {{ $errors->first() }}</div>
                 </div>
             @endif
-            <form method="POST" action="{{ route('login.post') }}" @submit="loading = true">
+            <form method="POST" action="{{ route('login') }}" @submit="loading = true">
                 @csrf
                 <div class="field">
                     <label for="m_email">Email address</label>
