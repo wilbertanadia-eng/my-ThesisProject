@@ -818,7 +818,7 @@
                     Sign in to portal
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
                 </button>
-                <form method="POST" action="{{ route('login') }}" x-data="{ loading: false }" @submit="loading = true">
+                <form method="POST" action="{{ route('guest.login') }}" x-data="{ loading: false }" @submit="loading = true">
                     @csrf
                     <button type="submit" class="btn-outline" :disabled="loading" aria-label="Continue browsing as a guest user">
                         <span x-show="!loading">Continue as Guest</span>
